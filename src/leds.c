@@ -3,6 +3,9 @@
 #define LED_TO_BIT_OFFSET 1
 #define BIT_MASK 1
 #define LEDS_ALL_OFF 0
+#define LEDS_ALL_ON 0xFFFF
+#define LED_ON 1
+#define LED_OFF 0
 
 static uint16_t * puerto;
 static registro_errores_t RegistroErrores;
@@ -28,4 +31,16 @@ void LedTurnOn(uint8_t led){
 
 void LedTurnOff(uint8_t led){
     *puerto &= ~LedToMask(led);
+}
+
+void LedTurnAllOn(void){
+    *puerto = LEDS_ALL_ON;
+}
+
+void LedTurnAllOff(void){
+    *puerto = LEDS_ALL_OFF;
+}
+
+bool LedConsultState(uint8_t led){
+    return ((*puerto & LedToMask(led)) != LED_OFF ? LED_ON : LED_OFF);
 }

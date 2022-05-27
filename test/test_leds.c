@@ -1,14 +1,8 @@
 #include "unity.h"
 #include <stdint.h>
+#include <stdbool.h>
 #include "leds.h"
 #include "mock_errores.h"
-
-/*
-• Se pueden prender todos los LEDs de una vez.
-• Se pueden apagar todos los LEDs de una vez.
-• Se puede consultar el estado de un LED prendido.
-• Se puede consultar el estado de un LED apagado.
-*/
 
 static uint16_t ledsVirtuales;
 static gravedad_t gravedad_informada;
@@ -58,4 +52,34 @@ void test_TurnOnAndOffManyLeds(void){
 void test_InvalidUpperLimitTurnOnLed(void){
     LedTurnOn(17);
     TEST_ASSERT_EQUAL(ALERTA, gravedad_informada);
+}
+
+//Se pueden prender todos los LEDs de una vez.
+void test_TurnOnAllLeds(void){
+    LedTurnAllOn();
+    TEST_ASSERT_EQUAL_HEX16(0xFFFF, ledsVirtuales);
+}
+
+//Se pueden apagar todos los LEDs de una vez.
+void test_TurnOffAllLeds(void){
+    LedTurnAllOn();
+    LedTurnAllOff();
+    TEST_ASSERT_EQUAL_HEX16(0, ledsVirtuales);
+}
+
+//Se puede consultar el estado de un LED prendido.
+void test_ConsultOnLed(void){
+    bool led_on = false;
+    LedTurnOn(5);
+    led_on = LedConsultState(5);
+    TEST_ASSERT_EQUAL_HEX16(true, led_on);
+}
+
+//Se puede consultar el estado de un LED apagado.
+void test_ConsultOffLed(void){
+    bool led_on = false;
+    LedTurnOn(5);
+    LedTurnOff(5);
+    led_on = LedConsultState(5);
+    TEST_ASSERT_EQUAL_HEX16(false, led_on);
 }

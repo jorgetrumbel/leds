@@ -2,6 +2,7 @@
 #define _LEDS_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 #include "errores.h"
 
 /**
@@ -25,4 +26,24 @@ void LedTurnOn(uint8_t led);
  */
 void LedTurnOff(uint8_t led);
 
+/**
+ * @brief Prende todos los leds al mismo tiempo
+ * 
+ */
+void LedTurnAllOn(void);
+
+/**
+ * @brief Apaga todos los leds al mismo tiempo
+ * 
+ */
+void LedTurnAllOff(void);
+
+/**
+ * @brief Consulta el estado de un led
+ * 
+ * @param led Numero de led a consultar (1 a 16)
+ * @return true Si el led esta encendido
+ * @return false Si el led esta apagado
+ */
+bool LedConsultState(uint8_t led);
 #endif

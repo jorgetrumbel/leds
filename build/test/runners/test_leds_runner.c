@@ -17,6 +17,10 @@ extern void test_TurnOnOneLed(void);
 extern void test_TurnOffOneLed(void);
 extern void test_TurnOnAndOffManyLeds(void);
 extern void test_InvalidUpperLimitTurnOnLed(void);
+extern void test_TurnOnAllLeds(void);
+extern void test_TurnOffAllLeds(void);
+extern void test_ConsultOnLed(void);
+extern void test_ConsultOffLed(void);
 
 
 /*=======Mock Management=====*/
@@ -84,11 +88,15 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
 int main(void)
 {
   UnityBegin("test_leds.c");
-  run_test(test_LedsOffAfterCreate, "test_LedsOffAfterCreate", 33);
-  run_test(test_TurnOnOneLed, "test_TurnOnOneLed", 40);
-  run_test(test_TurnOffOneLed, "test_TurnOffOneLed", 46);
-  run_test(test_TurnOnAndOffManyLeds, "test_TurnOnAndOffManyLeds", 53);
-  run_test(test_InvalidUpperLimitTurnOnLed, "test_InvalidUpperLimitTurnOnLed", 62);
+  run_test(test_LedsOffAfterCreate, "test_LedsOffAfterCreate", 23);
+  run_test(test_TurnOnOneLed, "test_TurnOnOneLed", 30);
+  run_test(test_TurnOffOneLed, "test_TurnOffOneLed", 36);
+  run_test(test_TurnOnAndOffManyLeds, "test_TurnOnAndOffManyLeds", 43);
+  run_test(test_InvalidUpperLimitTurnOnLed, "test_InvalidUpperLimitTurnOnLed", 52);
+  run_test(test_TurnOnAllLeds, "test_TurnOnAllLeds", 58);
+  run_test(test_TurnOffAllLeds, "test_TurnOffAllLeds", 64);
+  run_test(test_ConsultOnLed, "test_ConsultOnLed", 71);
+  run_test(test_ConsultOffLed, "test_ConsultOffLed", 79);
 
   CMock_Guts_MemFreeFinal();
   return UnityEnd();
