@@ -1,0 +1,5 @@
+*.d
+*.fail
+*.o
+*.out
+*.pass
